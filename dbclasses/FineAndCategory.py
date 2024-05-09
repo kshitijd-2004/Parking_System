@@ -1,4 +1,4 @@
-class Citation2:
+class FineAndCategory:
     def __init__(self, fine, category):
         self.fine = fine
         self.category = category
@@ -14,4 +14,4 @@ class Citation2:
 
     def setCategory(self, category):
         self.category = category
-        
+
