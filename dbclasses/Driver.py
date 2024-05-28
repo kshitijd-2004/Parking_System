@@ -1,7 +1,7 @@
 # Contains the getter and setter methods for the driverID, name, handicap and status
 class Driver:
-    def __init__(self, driverID, name, handicap, status):
-        self.driverID = driverID
+    def __init__(self, driver_id, name, handicap, status):
+        self.driverID = driver_id
         self.name = name
         self.handicap = handicap
         self.status = status
