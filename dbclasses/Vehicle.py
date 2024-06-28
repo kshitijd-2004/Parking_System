@@ -7,6 +7,9 @@ class Vehicle:
         self.color = color
         self.driver_id = driver_id
 
+    def __str__(self):
+        return f'Vehicle({self.license_number}, {self.model}, {self.year}, {self.manufacturer}, {self.color}, {self.driver_id})'
+
     def getDriverID(self):
         return self.driver_id
 
@@ -34,11 +37,11 @@ class Vehicle:
     def setCarLicenseNumber(self, CarLicenseNumber):
         self.license_number = CarLicenseNumber
 
-    def setYear(self, Year):
-        self.year = Year
+    def setYear(self, year):
+        self.year = year
 
-    def setManufacturer(self, Manufacturer):
-        self.manufacturer = Manufacturer
+    def setManufacturer(self, manufacturer):
+        self.manufacturer = manufacturer
 
-    def setColor(self, Color):
-        self.color = Color
+    def setColor(self, color):
+        self.color = color

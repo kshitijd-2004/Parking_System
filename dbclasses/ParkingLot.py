@@ -2,10 +2,10 @@ class ParkingLot:
     def __init__(self, lot_name, address):
         self.lot_name = lot_name
         self.address = address
-
+    def __str__(self):
+        return f'ParkingLot({self.lot_name}, {self.address})'
     def getLotName(self):
         return self.lot_name
-
     def getAddress(self):
         return self.address
 

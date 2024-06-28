@@ -6,6 +6,8 @@ class Spaces:
         self.space_type = space_type
         self.availability = availability
 
+    def __str__(self):
+        return f'Spaces({self.space_number}, {self.zone_id}, {self.lot_name}, {self.space_type}, {self.availability})'
 
     def getSpaceNumber(self):
         return self.space_number

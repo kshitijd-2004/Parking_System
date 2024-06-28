@@ -6,6 +6,8 @@ class Driver:
         self.handicap = handicap
         self.status = status
 
+    def __str__(self):
+        return f'Driver({self.driverID}, {self.name}, {self.handicap}, {self.status})'
     # Driver getter methods
     def getDriverID(self):
         return self.driverID

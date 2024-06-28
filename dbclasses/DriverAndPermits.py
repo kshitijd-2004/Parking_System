@@ -3,6 +3,8 @@ class DriverAndPermits:
         self.driverID = driverID
         self.numPermits = numPermits
 
+    def __str__(self):
+        return f'DriverAndPermits({self.driverID}, {self.numPermits})'
     def getDriverID(self):
         return self.driverID
 
