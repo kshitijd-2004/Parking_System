@@ -1,9 +1,11 @@
-from crud import VehicleCRUD
+from crud.VehicleCRUD import VehicleCRUD
 class VehicleUI:
     def __init__(self, connection):
         self.crud = VehicleCRUD(connection)
 
-    def vehicleUI(self):
+    @staticmethod
+    def vehicleUI(connection):
+        crud = VehicleCRUD(connection)
         while True:
             print("1. Enter Vehicle Information")
             print("2. Update Vehicle Information")
@@ -25,7 +27,7 @@ class VehicleUI:
                     continue
                 license_number, model, year, manufacturer, color, driver_id = data
 
-                if self.crud.addVehicle(license_number, model, year, manufacturer, color, driver_id):
+                if crud.addVehicle(license_number, model, year, manufacturer, color, driver_id):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -37,20 +39,20 @@ class VehicleUI:
                     continue
                 license_number, model, year, manufacturer, color, driver_id = data
 
-                if self.crud.updateVehicle(license_number, model, year, manufacturer, color, driver_id):
+                if crud.updateVehicle(license_number, model, year, manufacturer, color, driver_id):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
 
             elif choice == 3:
                 license_number = input("Enter License Number: ")
-                if self.crud.removeVehicle(license_number):
+                if crud.removeVehicle(license_number):
                     print('Operation Successful')
                 else:
                     print("Operation Failed")
 
             elif choice == 4:
-                vehicles = self.crud.viewVehicles()
+                vehicles = crud.viewVehicles()
                 if not vehicles:
                     print("No vehicles to display")
                     continue

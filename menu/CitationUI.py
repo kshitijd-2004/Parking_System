@@ -1,4 +1,4 @@
-from crud import CitationCRUD
+from crud.CitationCRUD import CitationCRUD
 import pymysql
 from datetime import datetime
 
@@ -6,7 +6,9 @@ class CitationUI:
     def __init__(self, connection):
         self.crud = CitationCRUD(connection)
 
-    def citationUI(self):
+    @staticmethod
+    def citationUI(connection):
+        crud = CitationCRUD(connection)
         while True:
             print("1. Enter Citation Information")
             print("2. Update Citation Information")
@@ -32,7 +34,7 @@ class CitationUI:
                 citation_date = datetime.strptime(citation_date, '%Y-%m-%d').date()
                 citation_time = datetime.strptime(citation_time, '%H:%M:%S').time()
 
-                if self.crud.addCitation(citation_number, payment_status, appeal_status, citation_date, citation_time, lot_name, category):
+                if crud.addCitation(citation_number, payment_status, appeal_status, citation_date, citation_time, lot_name, category):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -50,20 +52,20 @@ class CitationUI:
                 citation_date = datetime.strptime(citation_date, '%Y-%m-%d').date()
                 citation_time = datetime.strptime(citation_time, '%H:%M:%S').time()
 
-                if self.crud.updateCitation(citation_number, payment_status, appeal_status, citation_date, citation_time, lot_name, category):
+                if crud.updateCitation(citation_number, payment_status, appeal_status, citation_date, citation_time, lot_name, category):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
 
             elif choice == 3:
                 citation_number = input("Enter Citation Number: ")
-                if self.crud.removeCitation(citation_number):
+                if crud.removeCitation(citation_number):
                     print('Operation Successful')
                 else:
                     print("Operation Failed")
 
             elif choice == 4:
-                citations = self.crud.viewCitations()
+                citations = crud.viewCitations()
                 if not citations:
                     print("No citations to display")
                     continue

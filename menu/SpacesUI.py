@@ -1,10 +1,12 @@
-from crud import SpacesCRUD
+from crud.SpacesCRUD import SpacesCRUD
 
 class SpacesUI:
-    def __int__(self, connection):
+    def __init__(self, connection):
         self.crud = SpacesCRUD(connection)
 
-    def spacesUI(self):
+    @staticmethod
+    def spacesUI(connection):
+        crud = SpacesCRUD(connection)
         while True:
             print("1. Enter Spaces Information")
             print("2. Update Spaces Information")
@@ -26,7 +28,7 @@ class SpacesUI:
                     continue
                 space_number, zone_id, lot_name, space_type, availability = data
 
-                if self.crud.addSpace(space_number, zone_id, lot_name,  space_type, availability):
+                if crud.addSpace(space_number, zone_id, lot_name,  space_type, availability):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -38,27 +40,27 @@ class SpacesUI:
                     continue
                 space_number, zone_id, lot_name, space_type, availability = data
 
-                if self.crud.updateSpace(space_number, zone_id, lot_name, space_type, availability):
+                if crud.updateSpace(space_number, zone_id, lot_name, space_type, availability):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
 
             if choice == 3:
                 space_number = input("Enter Space Number: ")
-                if self.crud.removeSpace(space_number):
+                if crud.removeSpace(space_number):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
 
             if choice == 4:
-                spaces = self.crud.viewSpaces()
+                spaces = crud.viewSpaces()
                 if not spaces:
                     print("No spaces to display")
                     continue
                 print("| SpaceNumber | ZoneID | LotName | SpaceType | Availability |")
                 print("|-------------|--------|---------|-----------|--------------|")
                 for space in spaces:
-                    print(f'{space.space_number}<11 | {space.zone_id}<6 | {space.lot_name}<7 | {space.space_type}<9 | {space.availabilty}<12 |')
+                    print(f'| {space.space_number:<11} | {space.zone_id:<6} | {space.lot_name:<7} | {space.space_type:<9} | {space.availability:<12} |')
 
             elif choice == 5:
                 break
