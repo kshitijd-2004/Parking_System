@@ -3,6 +3,9 @@ class Zone:
         self.zone_id = zone_id
         self.lot_name = lot_name
 
+    def __str__(self):
+        return f'Zone({self.zone_id}, {self.lot_name})'
+
     def get_zone_id(self):
         return self.zone_id
 

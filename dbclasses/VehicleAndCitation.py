@@ -4,14 +4,17 @@ class VehicleAndCitation:
         self.license_plate = license_plate
         self.citation_number = citation_number
 
+    def __str__(self):
+        return f'VehicleAndCitation({self.license_plate}, {self.citation_number})'
+
     def getLicensePlate(self):
         return self.license_plate
 
     def getCitationNumber(self):
         return self.citation_number
 
-    def setLicensePlate(self):
-        return self.license_plate
+    def setLicensePlate(self, license_plate):
+        self.license_plate = license_plate
 
-    def setCitationNumber(self):
-        return self.citation_number
+    def setCitationNumber(self, citation_number):
+        self.citation_number = citation_number

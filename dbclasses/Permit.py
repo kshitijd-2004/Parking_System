@@ -6,6 +6,9 @@ class Permit:
         self.start_date = start_date
         self.end_date = end_date
 
+    def __str__(self):
+        return f'Permit({self.permit_id}, {self.permit_type}, {self.expiration_time}, {self.start_date}, {self.end_date})'
+
     def getPermitID(self):
         return self.permit_id
 
