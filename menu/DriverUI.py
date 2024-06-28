@@ -1,10 +1,12 @@
-from crud import DriverCRUD
+from crud.DriverCRUD import DriverCRUD
 
 class DriverUI:
     def __init__(self, connection):
         self.crud = DriverCRUD(connection)
 
-    def driverUI(self):
+    @staticmethod
+    def driverUI(connection):
+        crud = DriverCRUD(connection)
         while True:
             print("1. Add Driver Information")
             print("2. Update Driver Information")
@@ -27,7 +29,7 @@ class DriverUI:
                 driver_id, name, handicap, status = data
                 handicap = handicap.lower() == 'true'
 
-                if self.crud.addDriver(driver_id, name, handicap, status):
+                if crud.addDriver(driver_id, name, handicap, status):
                     print('Operation Successful')
                 else:
                     print('Operation Failed')
@@ -40,31 +42,30 @@ class DriverUI:
                 driver_id, name, handicap, status = data
                 handicap = handicap.lower() == 'true'
 
-                if self.crud.updateDriver(driver_id, name, handicap, status):
+                if crud.updateDriver(driver_id, name, handicap, status):
                     print('Operation Successful')
                 else:
                     print('Operation Failed')
 
             elif choice == 3:
                 driver_id = input("Enter DriverID")
-                if self.crud.deleteDriver(driver_id):
+                if crud.deleteDriver(driver_id):
                     print('Operation Successful')
                 else:
                     print('Operation Failed')
 
             elif choice == 4:
-                drivers = self.crud.viewDrivers()
+                drivers = crud.viewDrivers()
                 if not drivers:
                     print("No drivers to display")
                     continue
-                print("| DriverID | Name | Handicap | Status |")
-                print("|-----------|------|----------|--------|")
+                print("| DriverID |          Name          | Handicap |     Status      |")
+                print("|----------|------------------------|----------|-----------------|")
                 for driver in drivers:
-                    print(f"| {driver.driver_id:<10} | {driver.name:<4} | {str(driver.handicap):<8} | {str(driver.status):<6} |")
+                    print(f"| {driver.driverID:<8} | {driver.name:<22} | {driver.handicap:<8} | {driver.status:<15} |")
 
             elif choice == 5:
                 break
             else:
                 print("Enter a valid choice")
-
 

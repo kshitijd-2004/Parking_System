@@ -1,9 +1,11 @@
-from crud import ZoneCRUD
+from crud.ZoneCRUD import ZoneCRUD
 class ZoneUI:
     def __init__(self, connection):
         self.crud = ZoneCRUD(connection)
 
-    def zoneUI(self):
+    @staticmethod
+    def zoneUI(connection):
+        crud = ZoneCRUD(connection)
         while True:
             print("1. Enter Zone Information")
             print("2. Update Zone Information")
@@ -25,7 +27,7 @@ class ZoneUI:
                     continue
                 zone_id, lot_name = data
 
-                if self.crud.addZone(zone_id, lot_name):
+                if crud.addZone(zone_id, lot_name):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -37,20 +39,20 @@ class ZoneUI:
                     continue
                 zone_id, lot_name = data
 
-                if self.crud.updateZone(zone_id, lot_name):
+                if crud.updateZone(zone_id, lot_name):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
 
             elif choice == 3:
                 zone_id = input("Enter Zone ID: ")
-                if self.crud.removeZone(zone_id):
+                if crud.removeZone(zone_id):
                     print('Operation Successful')
                 else:
                     print("Operation Failed")
 
             elif choice == 4:
-                zones = self.crud.viewZones()
+                zones = crud.viewZones()
                 if not zones:
                     print("No zones to display")
                     continue

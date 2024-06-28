@@ -1,10 +1,12 @@
-from crud import ParkingLotCRUD
+from crud.ParkingLotCRUD import ParkingLotCRUD
 
 class ParkingLotUI:
-    def __int__(self, connection):
+    def __init__(self, connection):
         self.crud = ParkingLotCRUD(connection)
 
-    def parkinglotUI(self):
+    @staticmethod
+    def parkinglotUI(connection):
+        crud = ParkingLotCRUD(connection)
         while True:
             print("1. Enter Parking Lot Information")
             print("2. Update Parking Lot Information")
@@ -27,7 +29,7 @@ class ParkingLotUI:
 
                 lot_name, address = data
 
-                if self.crud.addParkingLot(lot_name, address):
+                if crud.addParkingLot(lot_name, address):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -40,20 +42,20 @@ class ParkingLotUI:
 
                 lot_name, address = data
 
-                if self.crud.updateParkingLot(lot_name, address):
+                if crud.updateParkingLot(lot_name, address):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
 
             elif choice == 3:
                 lot_name = input("Enter Lot Name: ")
-                if self.crud.removeParkingLot(lot_name):
+                if crud.removeParkingLot(lot_name):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
 
             elif choice == 4:
-                parking_lots = self.crud.viewParkingLots()
+                parking_lots = crud.viewParkingLots()
 
                 if not parking_lots:
                     print("No parking lots to display")
@@ -61,7 +63,7 @@ class ParkingLotUI:
                 print("| ParkingLot | Address |")
                 print("|------------|---------|")
                 for parking_lot in parking_lots:
-                    print(f'| {parking_lot.lot_name:<10} | {parking_lot.address}:<7')
+                    print(f'| {parking_lot.lot_name:<10} | {parking_lot.address:<7} |')
 
             elif choice == 5:
                 break

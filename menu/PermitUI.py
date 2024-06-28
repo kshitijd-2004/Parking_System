@@ -1,10 +1,12 @@
-from crud import PermitCRUD
+from crud.PermitCRUD import PermitCRUD
 from datetime import datetime
-class ParkingLotUI:
+class PermitUI:
     def __init__(self, connection):
         self.crud = PermitCRUD(connection)
 
-    def permitUI(self):
+    @staticmethod
+    def permitUI(connection):
+        crud = PermitCRUD(connection)
         while True:
             print("1. Enter Permit Information")
             print("2. Update Permit Information")
@@ -30,7 +32,7 @@ class ParkingLotUI:
                 start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
                 end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
 
-                if self.crud.addPermit(permit_id, permit_type, expiration_time, start_date, end_date):
+                if crud.addPermit(permit_id, permit_type, expiration_time, start_date, end_date):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -46,7 +48,7 @@ class ParkingLotUI:
                 start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
                 end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
 
-                if self.crud.updatePermit(permit_id, permit_type, expiration_time, start_date, end_date):
+                if crud.updatePermit(permit_id, permit_type, expiration_time, start_date, end_date):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -54,13 +56,13 @@ class ParkingLotUI:
             elif choice == 3:
                 permit_id = int(input("Enter PermitID: "))
 
-                if self.crud.removePermit(permit_id):
+                if crud.removePermit(permit_id):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
 
             elif choice == 4:
-                permits = self.crud.viewPermits()
+                permits = crud.viewPermits()
                 if not permits:
                     print("No Permits to Display")
                     continue
@@ -68,7 +70,7 @@ class ParkingLotUI:
                 print("|----------|------------|----------------|-----------|---------|")
 
                 for permit in permits:
-                    print(f"| {permit.permit_id}<8 | {permit.permit_type}:<10 | {permit.expiration_time}:<14 | {permit.start_date}:<9 | {permit.end_date}:<7 |")
+                    print(f"| {permit.permit_id:<8} | {permit.permit_type:<10} | {permit.expiration_time:<14} | {permit.start_date:<9} | {permit.end_date:<7} |")
 
             elif choice == 5:
                 break

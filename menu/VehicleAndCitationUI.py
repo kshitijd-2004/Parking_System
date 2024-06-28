@@ -1,9 +1,11 @@
-from crud import VehicleAndCitationCRUD
+from crud.VehicleAndCitationCRUD import VehicleAndCitationCRUD
 class VehicleAndCitationUI:
     def __init__(self, connection):
         self.crud = VehicleAndCitationCRUD(connection)
 
-    def vehicleAndCitationUI(self):
+    @staticmethod
+    def vehicleAndCitationUI(connection):
+        crud = VehicleAndCitationCRUD(connection)
         while True:
             print("1. Enter Vehicle and Citation Information")
             print("2. Update Vehicle and Citation Information")
@@ -25,7 +27,7 @@ class VehicleAndCitationUI:
                     continue
                 license_plate, citation_number = data
 
-                if self.crud.addVehicleCitation(license_plate, citation_number):
+                if crud.addVehicleCitation(license_plate, citation_number):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -37,7 +39,7 @@ class VehicleAndCitationUI:
                     continue
                 license_plate, citation_number = data
 
-                if self.crud.updateVehicleAndCitation(license_plate, citation_number):
+                if crud.updateVehicleAndCitation(license_plate, citation_number):
                     print("Operation Successful")
                 else:
                     print("Operation Failed")
@@ -45,13 +47,13 @@ class VehicleAndCitationUI:
             elif choice == 3:
                 license_plate = input("Enter License Plate: ")
                 citation_number = input("Enter Citation Number: ")
-                if self.crud.deleteVehicleCitation(license_plate, citation_number):
+                if crud.deleteVehicleCitation(license_plate, citation_number):
                     print('Operation Successful')
                 else:
                     print("Operation Failed")
 
             elif choice == 4:
-                vehicle_citations = self.crud.viewVehicleCitations()
+                vehicle_citations = crud.viewVehicleCitations()
                 if not vehicle_citations:
                     print("No vehicle and citation information to display")
                     continue
