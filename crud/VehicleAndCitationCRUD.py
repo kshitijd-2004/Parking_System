@@ -1,4 +1,4 @@
-from dbclasses import VehicleAndCitation
+from dbclasses.VehicleAndCitation import VehicleAndCitation
 import pymysql
 
 class VehicleAndCitationCRUD:
@@ -34,7 +34,7 @@ class VehicleAndCitationCRUD:
         try:
             cursor.execute(query, (license_number, citation_number))
             self.connection.commit()
-            return cursor.rowcount() > 0
+            return cursor.rowcount > 0
         except pymysql.MySQLError as e:
             print(f"Error: {e}")
             return False
@@ -42,7 +42,7 @@ class VehicleAndCitationCRUD:
             cursor.close()
 
     def viewVehicleCitations(self):
-        cursor = self.connection.cursor
+        cursor = self.connection.cursor()
         query = "SELECT * FROM VehicleCitations"
         cursor.execute(query)
         results = cursor.fetchall()

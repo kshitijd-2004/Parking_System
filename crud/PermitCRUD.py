@@ -1,4 +1,4 @@
-from dbclasses import Permit
+from dbclasses.Permit import Permit
 import pymysql
 class PermitCRUD:
     def __init__(self, connection):
@@ -37,7 +37,7 @@ class PermitCRUD:
         cursor = self.connection.cursor()
         query = 'DELETE FROM Permits WHERE PermitID = %s'
         try:
-            cursor.execute(query, (permit_id))
+            cursor.execute(query, (permit_id,))
             self.connection.commit()
             return cursor.rowcount > 0
         except pymysql.MySQLError as e:
@@ -53,7 +53,7 @@ class PermitCRUD:
             print(f'Permit with {permit_id} does not exist')
             return False
         cursor = self.connection.cursor()
-        query = "UPDATE Permits SET PermitType = %s, ExpirationTime = %s, StartDate = %s, EndDate = %s"
+        query = "UPDATE Permits SET PermitType = %s, ExpirationTime = %s, StartDate = %s, EndDate = %s WHERE PermitID = %s"
 
         try:
             cursor.execute(query, (permit_type, expiration_time, start_date, end_date, permit_id))
