@@ -1,8 +1,8 @@
-from dbclasses import ParkingLot
+from dbclasses.ParkingLot import ParkingLot
 import pymysql
 
 
-class ParkingLot:
+class ParkingLotCRUD:
     def __init__(self, connection):
         self.connection = connection
 
@@ -12,6 +12,7 @@ class ParkingLot:
         cursor.execute(query)
         results = cursor.fetchall()
         lot_list = [ParkingLot(lot_name, address) for lot_name, address in results]
+        cursor.close()
 
         return lot_list
 
@@ -65,6 +66,7 @@ class ParkingLot:
             return cursor.rowcount() > 0
         except pymysql.MySQLError as e:
             print(f'Error: {e}')
+            self.connection.rollback()
             return False
         finally:
             cursor.close()

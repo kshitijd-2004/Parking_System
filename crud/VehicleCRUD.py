@@ -1,4 +1,4 @@
-from dbclasses import Vehicle
+from dbclasses.Vehicle import Vehicle
 import pymysql
 
 class VehicleCRUD:
@@ -10,7 +10,7 @@ class VehicleCRUD:
         query = "SELECT * FROM Vehicles"
         cursor.execute(query)
         results = cursor.fetchall()
-        vehicle_list = [Vehicle[license_number, model, year, manufacturer, color, driver_id] for license_number, model, year, manufacturer, color, driver_id in results]
+        vehicle_list = [Vehicle(license_number, model, year, manufacturer, color, driver_id) for license_number, model, year, manufacturer, color, driver_id in results]
         cursor.close()
         return vehicle_list
 
@@ -47,7 +47,7 @@ class VehicleCRUD:
         try:
             cursor.execute(query, (license_number,))
             self.connection.commit()
-            return cursor.rowcount() > 0
+            return cursor.rowcount > 0
         except pymysql.MySQLError as e:
             print(f'Error: {e}')
             self.connection.rollback()

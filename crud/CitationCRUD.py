@@ -1,4 +1,4 @@
-from dbclasses import Citation
+from dbclasses.Citation import Citation
 import pymysql
 
 
@@ -36,13 +36,13 @@ class CitationCRUD:
             cursor.close()
 
     def removeCitation(self, citation_number):
-        cursor = self.connection.cursor
+        cursor = self.connection.cursor()
         query = "DELETE FROM Citation WHERE citation_number = %s"
 
         try:
-            cursor.execute(query, (citation_number))
+            cursor.execute(query, (citation_number,))
             self.connection.commit()
-            return cursor.rowcount() > 0
+            return cursor.rowcount > 0
         except pymysql.MySQLError as e:
             print(e)
             self.connection.rollback()
@@ -57,7 +57,7 @@ class CitationCRUD:
         try:
             cursor.execute(query, (payment_status, appeal_status, citation_date, citation_time, lot_name, category, citation_number))
             self.connection.commit()
-            return cursor.rowcount() > 0
+            return cursor.rowcount > 0
         except pymysql.MySQLError as e:
             print(f'Error: {e}')
             self.connection.rollback()
@@ -66,7 +66,7 @@ class CitationCRUD:
             cursor.close()
 
     def citationExists(self, citation_number):
-        cursor = self.connection.cursor
+        cursor = self.connection.cursor()
         query = "SELECT COUNT(*) FROM Citation WHERE citation_number = %s"
 
         cursor.execute(query, (citation_number,))

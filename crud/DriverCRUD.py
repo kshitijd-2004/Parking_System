@@ -1,5 +1,6 @@
-from dbclasses import Driver
+from dbclasses.Driver import Driver
 import pymysql
+
 
 class DriverCRUD:
     def __init__(self, connection):
@@ -25,7 +26,7 @@ class DriverCRUD:
             cursor.close()
 
     def deleteDriver(self, driver_id):
-        cursor = self.connection.cursor
+        cursor = self.connection.cursor()
         query = "DELETE FROM Driver WHERE DriverID = %s"
 
         try:
@@ -51,13 +52,13 @@ class DriverCRUD:
         try:
             cursor.execute(query, (name, handicap, status, driver_id))
             self.connection.commit()
-            return cursor.rowcount() > 0
+            return cursor.rowcount > 0
         except pymysql.MySQLError as e:
+            print(f"Exception: {e}")
             self.connection.rollback()
             return False
         finally:
             cursor.close()
-
 
     def viewDrivers(self):
         cursor = self.connection.cursor()
@@ -70,7 +71,7 @@ class DriverCRUD:
 
     def driverExists(self, driver_id):
         cursor = self.connection.cursor()
-        query = "SELECT COUNT(*) FROM Driver WHERE driver_id = %s"
+        query = "SELECT COUNT(*) FROM Driver WHERE DriverID = %s"
 
         try:
             cursor.execute(query, (driver_id,))

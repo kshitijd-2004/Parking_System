@@ -1,4 +1,4 @@
-from dbclasses import Spaces
+from dbclasses.Spaces import Spaces
 import pymysql
 class SpacesCRUD:
     def __init__(self, connection):
@@ -38,7 +38,7 @@ class SpacesCRUD:
         cursor = self.connection.cursor()
         query = 'DELETE FROM Spaces WHERE SpaceNumber = %s'
         try:
-            cursor.execute(query, (space_number))
+            cursor.execute(query, (space_number,))
             self.connection.commit()
             return cursor.rowcount > 0
         except pymysql.MySQLError as e:
