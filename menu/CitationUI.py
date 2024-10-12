@@ -70,7 +70,7 @@ class CitationUI:
                     print("No citations to display")
                     continue
                 print("| CitationNumber | PaymentStatus | AppealStatus | CitationDate | CitationTime | LotName | Category |")
-                print( "|----------------|---------------|--------------|--------------|--------------|---------|----------|")
+                print("|----------------|---------------|--------------|--------------|--------------|---------|----------|")
                 for citation in citations:
                     print(f"| {citation.citation_number:<14} | {citation.payment_status:<13} | {str(citation.appeal_status):<12} | {citation.citation_date:<12} | {citation.citation_time:<12} | {citation.lot_name:<7} | {citation.category:<8} |")
 
