@@ -1,19 +1,20 @@
 import mysql.connector
 from mysql.connector import Error
 
-class Connection:
+class connection:
     def __init__(self):
         self.connection = None
+        self.cursor = None
 
     def connect(self):
         """ Connect to MySQL database """
         try:
             self.connection = mysql.connector.connect(
-                host='Host',
-                port=0,
+                host='127.0.0.1',
+                port=3307,
                 database='parking_system',
-                user='user_name',
-                password='password'
+                user='dhande',
+                password='Siya2008'
             )
             if self.connection.is_connected():
                 db_info = self.connection.get_server_info()
@@ -28,16 +29,11 @@ class Connection:
             print(f"Error while connecting to MySQL: {e}")
             return None
 
-        # Removed the finally block since we want to keep the connection open
-        # and return the connection object.
+    def close_connection(self):
+        if self.connection.is_connected():
+            self.cursor.close()
+            self.connection.close()
+            print("Connection closed")
 
-
-# Test the connection
-if __name__ == '__main__':
-    db_connection = Connection()
-    connection = db_connection.connect()
-
-    if connection is not None and connection.is_connected():
-        print("Connection established successfully!")
-    else:
-        print("Failed to establish connection.")
+    def initialize(self):
+        self.connect()

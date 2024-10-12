@@ -60,10 +60,10 @@ class ParkingLotUI:
                 if not parking_lots:
                     print("No parking lots to display")
                     continue
-                print("| ParkingLot | Address |")
-                print("|------------|---------|")
+                print("| ParkingLot |                 Address                 |")
+                print("|------------|-----------------------------------------|")
                 for parking_lot in parking_lots:
-                    print(f'| {parking_lot.lot_name:<10} | {parking_lot.address:<7} |')
+                    print(f'| {parking_lot.lot_name:<10} | {parking_lot.address:<39} |')
 
             elif choice == 5:
                 break
