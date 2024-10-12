@@ -10,11 +10,11 @@ class connection:
         """ Connect to MySQL database """
         try:
             self.connection = mysql.connector.connect(
-                host='127.0.0.1',
+                host='host',
                 port=3307,
                 database='parking_system',
-                user='dhande',
-                password='Siya2008'
+                user='user',
+                password='password'
             )
             if self.connection.is_connected():
                 db_info = self.connection.get_server_info()
