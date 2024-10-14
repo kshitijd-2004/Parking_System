@@ -40,3 +40,20 @@
 .read-the-docs {
   color: #888;
 }
+
+.welcome-container{
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.welcome-message{
+  margin-bottom: 20%;
+}
+
+.manage-drivers{
+  display: flex;
+  margin-left: -10%;
+  justify-content: flex-start;
+}
+

@@ -1,10 +1,18 @@
 import Driver from "./components/Driver";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <h1>Parking Management System</h1>
-      <Driver />
+    <div className="welcome-container">
+      <div className="welcome-message">
+        <h1>Welcome To Parking Management System</h1>
+      </div>
+
+      <div className='buttons'>
+        <a href="/manage-drivers"></a>
+        <button className="manage-drivers">Manage Drivers</button>
+      </div>
     </div>
   );
 }
