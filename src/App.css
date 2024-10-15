@@ -64,6 +64,10 @@ body{
   flex-wrap: wrap;
 }
 
+.buttons button:hover{
+  background-color: #8A2BE2;
+}
+
 .welcome-message{
   margin-bottom: 20%;
 }
