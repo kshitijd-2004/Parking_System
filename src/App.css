@@ -33,6 +33,10 @@
   }
 }
 
+body{
+  background-color: #281c4a;
+}
+
 .card {
   padding: 2em;
 }
@@ -47,13 +51,58 @@
   flex-direction: column;
 }
 
+
+.buttons button {
+  background-color: #9370DB; /* Lavender */
+  color: #FFFFFF; /* White text */
+  padding: 15px 32px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-wrap: wrap;
+}
+
 .welcome-message{
   margin-bottom: 20%;
 }
 
 .manage-drivers{
-  display: flex;
-  margin-left: -10%;
-  justify-content: flex-start;
+  margin-left: 30px;;
 }
+
+.manage-vehicles{
+  margin-left: 150px;
+}
+
+.manage-citations{
+  margin-left: 150px;
+}
+
+.manage-permit{
+  margin-left: 150px;
+}
+
+.manage-parkinglot{
+  margin-top: 75px;
+  position: relative;
+  right: 190px
+}
+
+.manage-zone{
+  position: relative;
+  right: 55px;
+}
+
+.manage-spaces{
+  position: relative;
+  left: 115px;
+}
+
+.manage-vehiclecitation{
+  position: relative;
+  left: 240px;
+}
+
 
